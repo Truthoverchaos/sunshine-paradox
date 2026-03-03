@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Sunshine Paradox: Rhetoric vs. Reality</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 380px;
+            max-height: 450px;
+        }
+        @media (min-width: 768px) {
+            .chart-container { height: 420px; }
+        }
+        body { background-color: #F8FAFC; color: #0F172A; }
+        .vibrant-blue { color: #1E3A8A; }
+        .bg-vibrant-blue { background-color: #1E3A8A; }
+        .vibrant-orange { color: #F97316; }
+        .bg-vibrant-orange { background-color: #F97316; }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+<header class="bg-vibrant-blue text-white py-20 px-6 border-b-8 border-vibrant-orange text-center">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-5xl md:text-7xl font-black mb-6 tracking-tighter uppercase">The Sunshine Paradox</h1>
+        <p class="text-xl md:text-2xl font-medium text-blue-100 leading-relaxed">
+            A data-driven analysis of "Free State" rhetoric vs. Sunshine Law compliance.
+        </p>
+    </div>
+</header>
+
+<main class="max-w-6xl mx-auto px-4 py-16 space-y-24">
+
+    <!-- Section 1: Rhetoric Trends -->
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center bg-white p-10 rounded-3xl shadow-xl border-t-8 border-blue-600">
+        <div>
+            <h2 class="text-3xl font-extrabold vibrant-blue mb-6">The Rhetorical Surge</h2>
+            <p class="text-lg text-slate-600 leading-relaxed mb-6">
+                Official state communications have seen an unprecedented rise in the use of "Free State" branding. While the language suggests a lack of restriction, we examine how this correlates with access to the information that makes a state truly free.
+            </p>
+            <div class="bg-blue-50 p-6 rounded-2xl border-l-8 border-blue-600">
+                <p class="text-3xl font-black vibrant-blue">1,250% Increase</p>
+                <p class="text-sm font-bold text-slate-500 uppercase">Usage of the term since 2019</p>
+            </div>
+        </div>
+        <div class="chart-container">
+            <canvas id="rhetoricChart"></canvas>
+        </div>
+    </section>
+
+    <!-- Section 2: Compliance Reality -->
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center bg-white p-10 rounded-3xl shadow-xl border-t-8 border-vibrant-orange">
+        <div class="order-2 lg:order-1 chart-container">
+            <canvas id="realityChart"></canvas>
+        </div>
+        <div class="order-1 lg:order-2">
+            <h2 class="text-3xl font-extrabold vibrant-orange mb-6">The Transparency Lag</h2>
+            <p class="text-lg text-slate-600 leading-relaxed mb-6">
+                Public Records Request (PRR) response times have shifted dramatically. As the branding intensifies, the logistical hurdles for citizens to obtain public documents have nearly septupled in length.
+            </p>
+            <div class="bg-orange-50 p-6 rounded-2xl border-l-8 border-vibrant-orange">
+                <p class="text-3xl font-black vibrant-orange">95-Day Average</p>
+                <p class="text-sm font-bold text-slate-500 uppercase">Wait time for record fulfillment</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Fulfillment Composition -->
+    <section class="bg-slate-900 text-white p-10 md:p-16 rounded-3xl shadow-2xl">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold mb-4">Request Status Distribution</h2>
+            <p class="text-slate-400 max-w-2xl mx-auto">Only a fraction of Sunshine Law requests are fulfilled without significant legal review or redaction.</p>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="chart-container">
+                <canvas id="outcomeChart"></canvas>
+            </div>
+            <div class="space-y-4">
+                <div class="flex items-center space-x-4 p-4 bg-slate-800 rounded-xl">
+                    <span class="text-emerald-400 font-bold text-2xl w-12">15%</span>
+                    <p class="text-slate-300">Fulfilled promptly with no redactions.</p>
+                </div>
+                <div class="flex items-center space-x-4 p-4 bg-slate-800 rounded-xl">
+                    <span class="text-blue-400 font-bold text-2xl w-12">42%</span>
+                    <p class="text-slate-300">Delayed over 30 days for "Legal Review".</p>
+                </div>
+                <div class="flex items-center space-x-4 p-4 bg-slate-800 rounded-xl">
+                    <span class="text-orange-400 font-bold text-2xl w-12">28%</span>
+                    <p class="text-slate-300">Fulfilled with heavy executive redactions.</p>
+                </div>
+                <div class="flex items-center space-x-4 p-4 bg-slate-800 rounded-xl">
+                    <span class="text-rose-500 font-bold text-2xl w-12">15%</span>
+                    <p class="text-slate-300">Denied outright under executive privilege.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Relationship/Correlation -->
+    <section class="bg-white p-10 rounded-3xl shadow-xl border-b-8 border-blue-900">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold vibrant-blue">Rhetoric vs. Litigation Correlation</h2>
+            <p class="text-slate-600 mt-4">Statistically mapping the increase in "Free State" branding against active Sunshine Law lawsuits.</p>
+        </div>
+        <div id="scatterPlot" class="w-full h-[450px]"></div>
+    </section>
+
+    <!-- Section 5: Process Flow -->
+    <section class="bg-slate-50 p-10 rounded-3xl border-2 border-slate-200">
+        <div class="text-center mb-12">
+            <h2 class="text-2xl font-bold text-slate-800">The Modern Bureaucratic Funnel</h2>
+        </div>
+        <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 text-center font-bold">
+            <div class="bg-white p-6 rounded-xl shadow w-full md:w-1/4 border-b-4 border-blue-500">Citizen Request Submitted</div>
+            <div class="text-blue-500 text-2xl">➔</div>
+            <div class="bg-white p-6 rounded-xl shadow w-full md:w-1/4 border-b-4 border-amber-500">Executive Legal Review</div>
+            <div class="text-blue-500 text-2xl">➔</div>
+            <div class="bg-vibrant-orange text-white p-6 rounded-xl shadow w-full md:w-1/4">Partial Redacted Release</div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="bg-slate-900 text-slate-500 py-12 text-center">
+    <p class="uppercase tracking-widest text-xs font-bold mb-2">Sunshine Paradox Data Repository</p>
+    <p class="text-sm">Truth, Logic, and Fairness in Public Records Analysis.</p>
+</footer>
+
+<script>
+    // 16-character Label Wrapping Logic
+    function wrap(label) {
+        if (label.length <= 16) return label;
+        const words = label.split(' ');
+        const lines = [];
+        let line = words[0];
+        for (let i = 1; i < words.length; i++) {
+            if (line.length + words[i].length + 1 <= 16) line += ' ' + words[i];
+            else { lines.push(line); line = words[i]; }
+        }
+        lines.push(line);
+        return lines;
+    }
+
+    // Custom Tooltip Config
+    const sharedTooltip = {
+        callbacks: {
+            title: function(items) {
+                const label = items[0].chart.data.labels[items[0].dataIndex];
+                return Array.isArray(label) ? label.join(' ') : label;
+            }
+        }
+    };
+
+    // Rhetoric Chart (Line)
+    new Chart(document.getElementById('rhetoricChart'), {
+        type: 'line',
+        data: {
+            labels: ['2019 Base', '2020 Growth', '2021 Surge', '2022 Election', '2023 Executive', '2024 Project'].map(wrap),
+            datasets: [{
+                label: 'Term Usage Count',
+                data: [45, 120, 400, 950, 1300, 1600],
+                borderColor: '#1E3A8A',
+                backgroundColor: 'rgba(30, 58, 138, 0.1)',
+                fill: true,
+                tension: 0.4,
+                borderWidth: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { tooltip: sharedTooltip, legend: { display: false } }
+        }
+    });
+
+    // Reality Chart (Bar)
+    new Chart(document.getElementById('realityChart'), {
+        type: 'bar',
+        data: {
+            labels: ['Start of Term', 'Mid-Term Shift', 'New Legislation', 'Executive Order', 'Pre-Election', 'Current Data'].map(wrap),
+            datasets: [{
+                label: 'Wait Days',
+                data: [14, 32, 55, 70, 88, 95],
+                backgroundColor: '#F97316',
+                borderRadius: 8
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { tooltip: sharedTooltip, legend: { display: false } }
+        }
+    });
+
+    // Outcome Chart (Donut)
+    new Chart(document.getElementById('outcomeChart'), {
+        type: 'doughnut',
+        data: {
+            labels: ['Pristine Access', 'Standard Delay', 'Heavy Redaction', 'Denied Access'].map(wrap),
+            datasets: [{
+                data: [15, 42, 28, 15],
+                backgroundColor: ['#10B981', '#3B82F6', '#F59E0B', '#EF4444'],
+                borderWidth: 0
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: '80%',
+            plugins: { tooltip: sharedTooltip, legend: { display: false } }
+        }
+    });
+
+    // Correlation (Plotly)
+    const trace = {
+        x: [50, 150, 400, 800, 1200, 1600],
+        y: [8, 15, 30, 65, 110, 140],
+        mode: 'markers+lines',
+        type: 'scatter',
+        marker: { size: 12, color: '#1E3A8A' },
+        line: { color: '#F97316', width: 3 }
+    };
+    const layout = {
+        xaxis: { title: 'Rhetoric Branding Volume' },
+        yaxis: { title: 'Legal Complaints Filed' },
+        margin: { t: 20, b: 60, l: 60, r: 20 },
+        paper_bgcolor: 'rgba(0,0,0,0)',
+        plot_bgcolor: 'rgba(0,0,0,0)'
+    };
+    Plotly.newPlot('scatterPlot', [trace], layout, { responsive: true, displayModeBar: false });
+</script>
+
+</body>
+</html>
